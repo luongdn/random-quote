@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchRandomQuote } from './actions'
-import { addToFavorite } from '../FavoriteQuotes/actions'
+import { fetchRandomQuote, addToFavorite } from './actions'
 import { getRandomQuote } from './selectors'
 import Quote from 'Common/Quote'
 

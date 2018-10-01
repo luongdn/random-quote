@@ -2,6 +2,31 @@ import axios from 'axios'
 import * as quotes from 'Api/quotes'
 import * as types from 'Constants/ActionTypes'
 
+const formatQuote= (quote) => {
+  const {
+    dialogue,
+    downvotes_count,
+    favorites_count,
+    upvotes_count,
+    url,
+    ...rest
+  } = quote
+  return  {
+    ...rest,
+    favorite: true
+  }
+}
+
+export const addToFavorite = (quote) => (dispatch, getState) => {
+  if (getState().favQuotes.entities.quotes[quote.id]) {
+    return
+  }
+  dispatch({
+    type: types.ADD_TO_FAVORITE,
+    payload: formatQuote(quote)
+  })
+}
+
 const fetchRandomQuoteSuccess = (data) => ({
   type: types.FETCH_RANDOM_QUOTE_SUCCESS,
   payload: data
