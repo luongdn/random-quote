@@ -1,0 +1,9 @@
+.filter__tag {
+  display: inline-block;
+  margin: auto 5px;
+  cursor: pointer;
+}
+
+.filter_tag--selected {
+  font-weight: bold;
+}

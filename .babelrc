@@ -1,0 +1,7 @@
+{
+  "presets": ["env", "react", "stage-3"],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
+}

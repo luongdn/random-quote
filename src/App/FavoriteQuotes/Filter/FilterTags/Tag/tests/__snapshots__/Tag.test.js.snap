@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag component should match snapshot when tag is not selected 1`] = `
+<div
+  className="filter__tag"
+>
+  <p
+    className=""
+  >
+    tag name
+  </p>
+</div>
+`;
+
+exports[`Tag component should match snapshot when tag is selected 1`] = `
+<div
+  className="filter__tag"
+>
+  <p
+    className="filter_tag--selected"
+  >
+    tag name
+  </p>
+</div>
+`;
