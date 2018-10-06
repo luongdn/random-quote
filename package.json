@@ -63,6 +63,5 @@
     },
     "verbose": true,
     "testURL": "http://localhost/"
-  },
-  "author": "sloomm <luongdn725@gmail.com>"
+  }
 }
