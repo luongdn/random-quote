@@ -1,0 +1,61 @@
+.quote-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote-item {
+  padding: 10px;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-row-gap: 10px;
+  align-content: center;
+  border-radius: 5px;
+  transition-property: transform;
+  transition-duration: 0.5s;
+
+  animation-name: quote-item;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes quote-item {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.quote-item:hover {
+  transform: scale(1.1);
+}
+
+.quote-item--black-text {
+  background: rgb(208, 234, 240);
+  color: rgb(85, 95, 97);
+}
+
+.quote-item--white-text {
+  background: rgb(97, 185, 209);
+  color: rgb(250, 250, 250);
+}
+
+.quote-item > * {
+  grid-column: 1 / -1;
+}
+
+.quote-item__button {
+  height: 40px;
+  width: 40px;
+  border: transparent;
+  border-radius: 4px;
+  color: #fff;
+  background: #FF6867;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  justify-self: end;
+}

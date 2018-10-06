@@ -3,7 +3,7 @@ import { createSelector } from 'reselect'
 const getResults = (state) =>
   state.results
 
-const getSearchKey = (state) =>
+export const getSearchKey = (state) =>
   state.searchKey
 
 export const getResultBySearchKey = createSelector(
@@ -12,3 +12,6 @@ export const getResultBySearchKey = createSelector(
     return results[searchKey] || null
   }
 )
+
+export const getIsFetching = (state) =>
+  state.isFetching

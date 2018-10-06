@@ -65,6 +65,55 @@ describe('reducer', () => {
           })
         })
       })
+
+      describe('when quote removed from favorite', () => {
+        let action, currentState, nextState
+        beforeEach(() => {
+          action = {
+            type: types.REMOVE_FAV_QUOTE,
+            payload: {
+              id: 1,
+              author: 'author1 name',
+              author_permalink: 'author1',
+              tags: ["great", "best"]
+            }
+          }
+          currentState = {
+            great: {
+              id: 'great',
+              name: 'great',
+              quotes: [1, 2, 3],
+              selected: false
+            },
+            best: {
+              id: 'best',
+              name: 'best',
+              quotes: [1],
+              selected: true
+            }
+          }
+
+          nextState = {
+            great: {
+              id: 'great',
+              name: 'great',
+              quotes: [2, 3],
+              selected: false
+            },
+            best: {
+              id: 'best',
+              name: 'best',
+              quotes: [],
+              selected: true
+            }
+          }
+        })
+
+        it('should remove quote id from quotes array', () => {
+          expect(tags(currentState, action)).toEqual(nextState)
+        })
+
+      })
     })
   })
 })

@@ -4,7 +4,7 @@ import * as types from 'Constants/ActionTypes'
 describe('reducer', () => {
   describe('entities', () => {
     describe('authors', () => {
-      describe('when quote added to favorite', () => {
+      describe('when quotes added to favorite', () => {
         let action, currentState
         beforeEach(() => {
           action = {
@@ -50,6 +50,40 @@ describe('reducer', () => {
                 selected: true
               }
             })
+          })
+        })
+      })
+
+      describe('when quotes removed from favorite', () => {
+        let action, currentState
+        beforeEach(() => {
+          action = {
+            type: types.REMOVE_FAV_QUOTE,
+            payload: {
+              id: 1,
+              author: 'author1 name',
+              author_permalink: 'author1',
+              tags: ["great", "best"]
+            }
+          }
+          currentState = {
+            author1: {
+              id: 'author1',
+              name: 'author1 name',
+              quotes:[1],
+              selected: true
+            }
+          }
+        })
+
+        it('should remove quote id from quotes array', () => {
+          expect(authors(currentState, action)).toEqual({
+            author1: {
+              id: 'author1',
+              name: 'author1 name',
+              quotes:[],
+              selected: true
+            }
           })
         })
       })

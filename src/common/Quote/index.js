@@ -1,21 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import './Quote.css'
 
 class Quote extends Component {
   render() {
     const { quote, location } = this.props
 
     return(
-      <div>
-        <h2 className="quote__body">{quote.body}</h2>
+      <div className="quote">
+        <h2 className="quote__body">
+          <i className="fa fa-quote-left"></i>
+          &nbsp;
+          {quote.body}
+          &nbsp;
+          <i className="fa fa-quote-right"></i>
+        </h2>
         {location.pathname !== '/' &&
-          <span>
+          <div className="quote__tags">
             <h3>Tags: </h3>
             {quote.tags.map((item) => (
               <span key={item}>{item} </span>
             ))}
-          </span>
+          </div>
         }
         <p className="quote__author">- {quote.author}</p>
       </div>

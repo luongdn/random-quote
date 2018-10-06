@@ -4,12 +4,13 @@ import Tag from './Tag'
 
 const FilterTags = ({ filterTags, handleToggle }) => {
   return(
-    <div>
+    <div className="filter-tags">
       {Object.keys(filterTags).map((key) => (
         <Tag
           key={key}
           name={filterTags[key].name}
           selected={filterTags[key].selected}
+          length={filterTags[key].quotes.length}
           onToggle={() => handleToggle(key)}
         />
       ))}

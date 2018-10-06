@@ -4,14 +4,19 @@ import './Tag.css'
 
 class Tag extends Component {
   render() {
-    const { onToggle, name, selected } = this.props
+    const { onToggle, name, selected, length } = this.props
+    const selectedClassName = selected ? 'filter-tags__tag--selected' : ''
+
+    if (length === 0) {
+      return <div style={{display: 'none'}}></div>
+    }
 
     return(
       <div
-        className="filter__tag"
+        className={`filter-tags__tag ${selectedClassName}`}
         onClick={onToggle}
       >
-        <p className={selected ? 'filter_tag--selected' : ''}>{name}</p>
+        <p>{name}</p>
       </div>
     )
   }

@@ -16,7 +16,7 @@ const setup = (result) => {
     actions,
     component,
     quoteList: component.find(QuoteList),
-    moreBtn: component.find('#more-btn'),
+    moreBtn: component.find('#more-button'),
   }
 }
 
