@@ -2,11 +2,9 @@
 
 exports[`Tag component should match snapshot when tag is not selected 1`] = `
 <div
-  className="filter__tag"
+  className="filter-tags__tag "
 >
-  <p
-    className=""
-  >
+  <p>
     tag name
   </p>
 </div>
@@ -14,11 +12,9 @@ exports[`Tag component should match snapshot when tag is not selected 1`] = `
 
 exports[`Tag component should match snapshot when tag is selected 1`] = `
 <div
-  className="filter__tag"
+  className="filter-tags__tag filter-tags__tag--selected"
 >
-  <p
-    className="filter_tag--selected"
-  >
+  <p>
     tag name
   </p>
 </div>

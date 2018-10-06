@@ -36,9 +36,4 @@ describe('FavoriteQuotes component', () => {
     const { component } = setup({ ...props, error: 'Error message' })
     expect(component.text()).toEqual('Error message')
   })
-
-  it('should render QuoteList component', () => {
-    const { quoteList } = setup(props)
-    expect(quoteList.length).toBe(1)
-  })
 })

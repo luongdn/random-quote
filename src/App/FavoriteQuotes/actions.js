@@ -24,7 +24,6 @@ export const fetchFavQuotes = () => (dispatch) => {
       dispatch(fetchFavQuotesSuccess(response.data))
     })
     .catch((error) => {
-      console.log(quotes.favQuotes())
       if (error.response) {
         //server response
         dispatch(fetchFavQuotesFailure(error.response.data))

@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
 import { fetchSearchQuotes, searchQuotesIfNeeded } from './actions'
-import { getResultBySearchKey } from './selectors'
+import {
+  getResultBySearchKey,
+  getSearchKey,
+  getIsFetching
+} from './selectors'
 import { Link } from 'react-router-dom'
 import QuoteList from 'Common/QuoteList'
+import { withLoading } from 'Common/Loading'
+import * as loadingTypes from 'Constants/LoadingTypes'
 import './Search.css'
 
 export class Search extends Component {
@@ -42,19 +49,25 @@ export class Search extends Component {
 
   render() {
     const { searchTerm } = this.state
-    const { result } = this.props
+    const { result, searchKey } = this.props
 
     return(
-      <div className="search">
-        <form onSubmit={this.handleSubmit}>
+      <div className="search content-center">
+        <form className="search-form" onSubmit={this.handleSubmit}>
           <input
+            className="search-form__input"
             type="text"
             value={searchTerm}
             onChange={this.handleChange}
             ref={(node) => { this.input = node }}
           />
-          <button type="submit">Search</button>
+          <button className="search-form__button" type="submit">Search</button>
         </form>
+
+        { searchKey !== '' &&
+          <h1>{`Search results for "${searchKey}"`}</h1>
+        }
+
         { result &&
           <QuoteList
             quotes={result.quotes}
@@ -62,7 +75,7 @@ export class Search extends Component {
         }
 
         { result && !result.last_page &&
-          <button id="more-btn" onClick={this.handleClickMore}>More</button>
+          <button id="more-button" className="more-button" onClick={this.handleClickMore}>More</button>
         }
       </div>
     )
@@ -76,14 +89,17 @@ Search.propTypes = {
     quotes: PropTypes.array,
     page: PropTypes.number,
     last_page: PropTypes.bool
-  })
+  }),
+  isFetching: PropTypes.bool,
 }
 
 const mapStateToProps = (state) => ({
-  result: getResultBySearchKey(state.searchQuotes)
+  result: getResultBySearchKey(state.searchQuotes),
+  searchKey: getSearchKey(state.searchQuotes),
+  isFetching: getIsFetching(state.searchQuotes),
 })
 
-export default connect(
-  mapStateToProps,
-  { fetchSearchQuotes, searchQuotesIfNeeded }
+export default compose(
+  connect(mapStateToProps, { fetchSearchQuotes, searchQuotesIfNeeded }),
+  withLoading(loadingTypes.roller)
 )(Search)

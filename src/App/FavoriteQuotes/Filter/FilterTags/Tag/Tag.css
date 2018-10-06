@@ -1,9 +1,21 @@
-.filter__tag {
+.filter-tags__tag {
   display: inline-block;
-  margin: auto 5px;
+  margin: 5px;
   cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid #595959;
+  color: #333333;
+  padding: 5px;
+  font-size: 13px;
 }
 
-.filter_tag--selected {
+.filter-tags__tag:hover {
+  color: #fff;
+  background: #595959;
+}
+
+.filter-tags__tag--selected {
   font-weight: bold;
+  color: #fff;
+  background: #595959;
 }

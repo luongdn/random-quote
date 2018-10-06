@@ -7,3 +7,6 @@ export const getRandomQuote = createSelector(
   [getQuote],
   (quote) => quote
 )
+
+export const getIsFetching = (state) =>
+  state.isFetching

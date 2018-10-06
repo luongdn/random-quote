@@ -1,0 +1,96 @@
+.random-quote-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px);
+  background: var(--random-color);
+  transition: background 1000ms ease-in;
+}
+
+.fade-enter {
+  opacity: 0.1;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 2000ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 50ms ease-in;
+}
+
+.random-quote__quote {
+  background-color: #fff;
+  width: 50%;
+  min-height: 40vh;
+  margin: auto;
+  border-radius: 5px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.random-quote__body,
+.random-quote__author {
+  color: var(--random-color);
+  transition: color 1000ms ease-in-out;
+  font-family: 'Raleway', 'Open Sans', Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.random-quote__body {
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.random-quote__author,
+.random-quote__button {
+  text-align: right;
+}
+
+.random-quote__button button {
+  background: var(--random-color);
+  transition: background 1000ms ease-in;
+  color: #fff;
+  border: transparent;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .random-quote__quote {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .random-quote__quote {
+    width: 70%;
+  }
+  .random-quote__body {
+    margin-bottom: 10px;
+  }
+  .random-quote__author {
+    margin-bottom: 10px;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .random-quote__quote {
+    width: 90%;
+  }
+}
+

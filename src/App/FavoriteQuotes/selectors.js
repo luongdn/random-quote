@@ -55,3 +55,6 @@ export const getFavQuotesByListIds = createSelector(
 
 export const getError = (state) =>
   state.error
+
+export const getIsFetching = (state) =>
+  state.isFetching

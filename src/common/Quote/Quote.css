@@ -1,0 +1,28 @@
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.quote > * {
+  padding: 5px 0;
+}
+
+.quote__body {
+  font-weight: 400;
+}
+
+.quote__tags {
+  font-size: 14px;
+}
+
+.quote__tags > * {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.quote__author {
+  font-size: 18px;
+  text-align: right;
+}

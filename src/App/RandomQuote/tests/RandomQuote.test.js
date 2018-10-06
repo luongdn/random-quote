@@ -1,10 +1,10 @@
 import React from 'react'
 import { RandomQuote } from '../'
-import Quote from 'Common/Quote'
 
 const setup = (quote) => {
   const actions = {
-    fetchRandomQuote: jest.fn()
+    fetchRandomQuote: jest.fn(),
+    addToFavorite: jest.fn()
   }
 
   const component = shallow(
@@ -14,7 +14,7 @@ const setup = (quote) => {
   return {
     actions,
     component,
-    quoteComponent: component.find(Quote),
+    addBtn: component.find('button').at(0),
     newQuoteBtn: component.find('button').at(1)
   }
 }
@@ -30,14 +30,15 @@ describe('RandomQuote component', () => {
     }
   })
 
-  it('should render one Quote component', () => {
-    const { quoteComponent } = setup(quote)
-    expect(quoteComponent.length).toBe(1)
+  it('should call `addToFavorite` on button click', () => {
+    const { addBtn, actions } = setup(quote)
+    addBtn.simulate('click', { preventDefault() {} })
+    expect(actions.addToFavorite).toBeCalled()
   })
 
   it('should call `fetchRandomQuote` on button click', () => {
     const { newQuoteBtn, actions } = setup(quote)
-    newQuoteBtn.simulate('click')
+    newQuoteBtn.simulate('click', { preventDefault() {} })
     expect(actions.fetchRandomQuote).toBeCalled()
   })
 })
