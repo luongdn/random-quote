@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchFavQuotes } from './actions'
+import { fetchFavQuotesIfNeeded } from './actions'
 import Filter from './Filter'
 import QuoteList from 'Common/QuoteList'
 import {
@@ -11,48 +11,40 @@ import {
   getError,
   getIsFetching
 } from './selectors'
-import { withLoading } from 'Common/Loading'
+import { withLoading } from 'Common/withLoading'
 import * as loadingTypes from 'Constants/LoadingTypes'
+import { withError } from 'Common/withError'
 import './FavoriteQuotes.css'
 
-export class FavoriteQuotes extends Component {
-  componentDidMount() {
-    this.fetchFavQuotesIfNeeded()
-  }
-
-  fetchFavQuotesIfNeeded = () => {
-    const { allIds, fetchFavQuotes } = this.props
-    if (allIds.length === 0) {
-      fetchFavQuotes()
-    }
-  }
-
-  render() {
-    const { quotes, allIds, error } = this.props
-
-    if (error) {
-      return <div>{error}</div>
-    }
-
-    if (allIds.length === 0) {
-      return <div className="not-found">No Favorite Quotes Found</div>
-    }
-
-    return(
-      <div className="favorite-quotes">
-        <div className="content-right">
-          <Filter />
-        </div>
-        <div className="content-left">
-          <QuoteList quotes={quotes} />
-        </div>
+export const FavoriteQuotes = ({ quotes, allIds, fetchFavQuotesIfNeeded }) => {
+  if (allIds.length === 0) {
+    return (
+      <div className="not-found">
+        <p>No Favorite Quotes Found</p>
+        <button
+          className="random-button"
+          onClick={() => fetchFavQuotesIfNeeded()}
+        >
+          Get some random quotes
+        </button>
       </div>
     )
   }
+
+  return(
+    <div className="favorite-quotes">
+      <div className="content-right">
+        <Filter />
+      </div>
+      <div className="content-left">
+        <QuoteList quotes={quotes} />
+      </div>
+    </div>
+  )
 }
 
 FavoriteQuotes.propTypes = {
-  fetchFavQuotes: PropTypes.func.isRequired,
+  fetchFavQuotesIfNeeded: PropTypes.func.isRequired,
   allIds: PropTypes.array.isRequired,
   quotes: PropTypes.array,
   error: PropTypes.string,
@@ -67,6 +59,7 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  connect(mapStateToProps, { fetchFavQuotes }),
-  withLoading(loadingTypes.ripple)
+  connect(mapStateToProps, { fetchFavQuotesIfNeeded }),
+  withLoading(loadingTypes.ripple),
+  withError(),
 )(FavoriteQuotes)

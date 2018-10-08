@@ -4,7 +4,7 @@ import QuoteList from 'Common/QuoteList'
 
 const setup = (props = {}) => {
   const actions = {
-    fetchFavQuotes: jest.fn()
+    fetchFavQuotesIfNeeded: jest.fn()
   }
 
   const component = shallow(
@@ -27,13 +27,16 @@ describe('FavoriteQuotes component', () => {
     }
   })
 
-  it('should call `fetchFavQuotes` on mounting', () => {
-    const { actions } = setup(props)
-    expect(actions.fetchFavQuotes).toBeCalled()
-  })
+  describe('when allIds is empty', () => {
+    it('should render not-found text', () => {
+      const { component } = setup(props)
+      expect(component.find('.not-found').length).toBe(1)
+    })
 
-  it('should render error message', () => {
-    const { component } = setup({ ...props, error: 'Error message' })
-    expect(component.text()).toEqual('Error message')
+    it('should call `fetchFavQuotesIfNeeded` on button click', () => {
+      const { component, actions } = setup(props)
+      component.find('.random-button').at(0).simulate('click')
+      expect(actions.fetchFavQuotesIfNeeded).toBeCalled()
+    })
   })
 })

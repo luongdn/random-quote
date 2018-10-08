@@ -31,10 +31,10 @@ export const fetchSearchQuotes = (searchTerm, page = 1) => (dispatch, getState) 
     .catch(error => {
       if (error.response) {
         //server response
-        dispatch(fetchFavQuotesFailure(error.response.data))
+        dispatch(fetchSearchQuotesFailure(error.response.data))
       }
       else if (error.request) {
-        dispatch(fetchFavQuotesFailure(error.message))
+        dispatch(fetchSearchQuotesFailure(error.message))
       }
       else {
         console.log('Error: ', error.message)

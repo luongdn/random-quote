@@ -1,3 +1,13 @@
 .favorite-quotes {
   display: block;
 }
+
+.random-button {
+  cursor: pointer;
+  height: 30px;
+  background: #927373;
+  color: #FBF5F5;
+  padding: 5px;
+  border: none;
+  border-radius: 2px;
+}

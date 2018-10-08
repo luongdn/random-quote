@@ -56,6 +56,11 @@
   text-align: right;
 }
 
+.random-quote__button {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .random-quote__button button {
   background: var(--random-color);
   transition: background 1000ms ease-in;

@@ -36,3 +36,10 @@ export const fetchFavQuotes = () => (dispatch) => {
       }
     })
 }
+
+export const fetchFavQuotesIfNeeded = () => (dispatch, getState) => {
+  const { allIds, isFetching } = getState().favQuotes
+  if (!isFetching && allIds.length === 0) {
+    dispatch(fetchFavQuotes())
+  }
+}
