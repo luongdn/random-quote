@@ -1,21 +1,16 @@
-const api_key = '773ef45c4cb8dc667cebb107b5e00b05'
+const base_url = process.env.BASE_URL || 'localhost://8080'
 
 export const randomQuote = () =>
   `https://favqs.com/api/qotd`
 
 export const favQuotes = () => ({
   method: 'get',
-  url: 'https://favqs.com/api/quotes',
-  headers: {
-    Authorization: `Token token="${api_key}"`
-  }
+  url: `${base_url}/favQuotes`,
 })
 
 export const searchQuotes = (filter, page) => ({
   method: 'get',
-  url: 'https://favqs.com/api/quotes/',headers: {
-    Authorization: `Token token="${api_key}"`
-  },
+  url: `${base_url}/searchQuotes,
   params: {
     filter,
     page

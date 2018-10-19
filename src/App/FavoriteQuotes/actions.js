@@ -21,7 +21,7 @@ export const fetchFavQuotes = () => (dispatch) => {
 
   axios.request(quotes.favQuotes())
     .then((response) => {
-      dispatch(fetchFavQuotesSuccess(response.data))
+      dispatch(fetchFavQuotesSuccess(response))
     })
     .catch((error) => {
       if (error.response) {

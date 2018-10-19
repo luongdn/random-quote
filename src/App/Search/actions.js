@@ -24,7 +24,7 @@ export const fetchSearchQuotes = (searchTerm, page = 1) => (dispatch, getState) 
   axios.request(searchQuotes(searchTerm, page))
     .then((response) => {
       dispatch(fetchSearchQuotesSuccess({
-        ...response.data,
+        ...response,
         searchKey: searchTerm
       }))
     })
